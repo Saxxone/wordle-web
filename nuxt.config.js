@@ -20,6 +20,10 @@ export default {
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
+    ],
+    script: [
+      {async: 'async', src: "https://www.googletagmanager.com/gtag/js?id=G-05R2FNVDRZ"},
+      {src: "/js/gtag.js"},
     ]
   },
 
