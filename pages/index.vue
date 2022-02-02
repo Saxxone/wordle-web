@@ -106,12 +106,14 @@ export default {
       }
     },
     async compareChars(slotIndex) {
-     let wotd =  [...this.wordOfTheDay]
+      let wotd = [...this.wordOfTheDay]
       await this.slots[slotIndex].forEach((character, index) => {
+        let char = character.toString()
+        console.log(char === character)
         if (character === wotd[index]) {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#528a4c';
         } else if (wotd.includes(character)) {
-          alert(`character, ${wotd}, ${wotd}`)
+
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#c3af4e';
         } else {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#272424';
