@@ -108,11 +108,10 @@ export default {
     async compareChars(slotIndex) {
       debugger
       await this.slots[slotIndex].forEach((character, index) => {
-        this.wordOfTheDay.includes(character) == true ? alert(`${this.wordOfTheDay} includes character ${character}`) : alert(`${this.wordOfTheDay} does not include character ${character}`)
         if (character === this.wordOfTheDay[index]) {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#528a4c';
         }
-        if (this.wordOfTheDay.includes(character)) {
+        if (this.wordOfTheDay.includes(character.toLowerCase())) {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#c3af4e';
         } else {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#272424';
