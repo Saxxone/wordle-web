@@ -106,17 +106,15 @@ export default {
       }
     },
     async compareChars(slotIndex) {
-      let wotd = [...this.wordOfTheDay]
       await this.slots[slotIndex].forEach((character, index) => {
         let char = character.toString()
         console.log(char === character)
-        if (character === wotd[index]) {
+        if (character === this.wordOfTheDay[index]) {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#528a4c';
-        } else if (wotd.includes(character)) {
-
-          document.querySelector(`#slot${slotIndex}${index}`).style.background = '#c3af4e';
-        } else {
+        } else if (!this.wordOfTheDay.includes(character)) {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#272424';
+        } else if (this.wordOfTheDay.includes(character)) {
+          document.querySelector(`#slot${slotIndex}${index}`).style.background = '#c3af4e';
         }
       })
       if (this.currentIndex < 5) ++this.currentIndex;
