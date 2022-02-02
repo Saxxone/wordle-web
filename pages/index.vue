@@ -1,7 +1,7 @@
 <template>
   <div class="text-uppercase d-flex w-100 py-4">
     <div class="mx-auto">
-      <h1 class="font-weight-bold text-center text-light mb-3">WORDLE WEB</h1>
+      <h1 class="font-weight-bold h3 text-center text-light mb-3">WORDLE WEB</h1>
       <div class="container d-flex" v-for="(i, parentIndex) in slots" :key="'index' + parentIndex">
         <input @keydown.enter="submit" autocomplete="off" :id="'slot'+parentIndex+index"
                @keyup="cleanChar($event, parentIndex, index)"
@@ -131,8 +131,8 @@ body {
   border-radius: 3px;
   border: 1px solid rgba(0, 0, 0, 0.8);
   font-size: 30px;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   margin: 3px;
   text-align: center;
 }
@@ -142,9 +142,9 @@ body {
 }
 
 .btn {
-  width: 373px;
+  width: 321px;
   text-align: center;
-  height: 60px;
+  height: 55px;
   padding: 0;
   display: flex;
   align-items: center;
