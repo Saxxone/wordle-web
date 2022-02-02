@@ -16,6 +16,16 @@
         </div>
       </div>
     </div>
+    <div class="win align-items-center justify-content-center">
+      <div>
+        <img src="/winner.gif" class="img-fluid mt-n4" alt="">
+      </div>
+    </div>
+    <div class="lose align-items-center justify-content-center">
+      <div>
+        <img src="/game-over.gif" class="img-fluid mt-n4" alt="">
+      </div>
+    </div>
   </div>
 </template>
 
@@ -85,7 +95,7 @@ export default {
               count++
               document.querySelector(`#slot${this.currentIndex}${i}`).style.background = '#528a4c'
             }
-            alert("YOU WIN")
+            document.querySelector('.win').style.display = 'flex'
           }
         } else {
           alert("Invalid word")
@@ -104,10 +114,10 @@ export default {
       })
       if (this.currentIndex < 5) ++this.currentIndex;
       else {
-        alert("YOU LOSE!!!")
+        document.querySelector('.lose').style.display = 'flex'
         setTimeout(() => {
           window.location.reload()
-        }, 2000)
+        }, 5000)
       }
 
     }
@@ -155,5 +165,12 @@ body {
 :focus-visible {
   box-shadow: unset;
   border: unset;
+}
+
+.win, .lose {
+  position: fixed;
+  width: 100vw;
+  display: none;
+  height: 100vh;
 }
 </style>
