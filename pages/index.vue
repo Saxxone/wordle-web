@@ -3,8 +3,8 @@
     <div class="mx-auto">
       <h1 class="font-weight-bold h3 text-center text-light mb-3">WORDLE WEB</h1>
       <div class="container d-flex" v-for="(i, parentIndex) in slots" :key="'index' + parentIndex">
-        <input @keydown.enter="submit" autocomplete="off" :id="'slot'+parentIndex+index"
-               @keyup="cleanChar($event, parentIndex, index)"
+        <input autocomplete="off" :id="'slot'+parentIndex+index"
+               @input="cleanChar($event, parentIndex, index)"
                v-for="(arr, index) in i"
                :readonly="(parentIndex) !== currentIndex"
                class="field d-inline-block text-uppercase"
@@ -18,7 +18,7 @@
     </div>
     <div class="win align-items-center justify-content-center">
       <div>
-        <img src="/winner.gif" class="img-fluid mt-n4" alt="">
+        <img src="/correct.gif" class="img-fluid mt-n4" alt="">
       </div>
     </div>
     <div class="lose align-items-center justify-content-center">
@@ -63,22 +63,28 @@ export default {
   },
   methods: {
     cleanChar(event, parentIndex, index) {
-      if (!this.validChars.includes(event.key)) {
-        event.preventDefault();
-      } else {
-        if (parentIndex === this.currentIndex) {
+      // console.log(event.target.value, parentIndex, this.currentIndex)
+      // if (!this.validChars.includes(event.key)) {
+      //   event.preventDefault();
+      // }
+      // else {
+      if (parentIndex === this.currentIndex) {
+        console.log(event.target.value.length)
+        if (event.target.value.length >= document.querySelector(`#slot${parentIndex}${index}`).getAttribute('maxlength')) {
           if (index < 4) {
             ++index;
             document.querySelector(`#slot${parentIndex}${index}`).focus();
           }
         }
       }
+      // }
     },
     checkSlotValues() {
       return !this.slots[this.currentIndex].includes('');
     },
     inWordBank(word) {
-      return this.wordBank.includes(word);
+      let wrd = word.toLowerCase()
+      return this.wordBank.includes(wrd);
     },
     submit() {
       if (this.checkSlotValues()) {
