@@ -63,21 +63,19 @@ export default {
   },
   methods: {
     cleanChar(event, parentIndex, index) {
-      // console.log(event.target.value, parentIndex, this.currentIndex)
-      // if (!this.validChars.includes(event.key)) {
-      //   event.preventDefault();
-      // }
-      // else {
-      if (parentIndex === this.currentIndex) {
-        console.log(event.target.value.length)
-        if (event.target.value.length >= document.querySelector(`#slot${parentIndex}${index}`).getAttribute('maxlength')) {
-          if (index < 4) {
-            ++index;
-            document.querySelector(`#slot${parentIndex}${index}`).focus();
+      console.log(event)
+      if (!this.validChars.includes(event.target.value)) {
+        event.preventDefault();
+      } else {
+        if (parentIndex === this.currentIndex) {
+          if (event.target.value.length >= event.target.getAttribute('maxlength')) {
+            if (index < 4) {
+              ++index;
+              document.querySelector(`#slot${parentIndex}${index}`).focus();
+            }
           }
         }
       }
-      // }
     },
     checkSlotValues() {
       return !this.slots[this.currentIndex].includes('');
