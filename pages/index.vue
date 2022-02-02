@@ -88,6 +88,7 @@ export default {
         const word = this.slots[this.currentIndex].join('');
         if (this.inWordBank(word)) {
           if (word.toLowerCase() !== this.word.toLowerCase()) {
+            alert(`Before compare`)
             await this.compareChars(this.currentIndex);
           } else {
             document.querySelectorAll('.field').forEach(elt => {
@@ -115,6 +116,7 @@ export default {
         } else {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#272424';
         }
+        alert(`After compare`)
       })
       if (this.currentIndex < 5) ++this.currentIndex;
       else {
