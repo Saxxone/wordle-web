@@ -83,15 +83,15 @@ export default {
       let wrd = word.toLowerCase()
       return this.wordBank.includes(wrd);
     },
-    submit() {
+    async submit() {
       if (this.checkSlotValues()) {
         const word = this.slots[this.currentIndex].join('');
         if (this.inWordBank(word)) {
           if (word.toLowerCase() !== this.word.toLowerCase()) {
-            this.compareChars(this.currentIndex);
+            await this.compareChars(this.currentIndex);
           } else {
             document.querySelectorAll('.field').forEach(elt => {
-              elt.setAttribute('readonly', true)
+              elt.setAttribute('readonly', 'true')
             })
             let count = 0
             for (let i = 0; i < 5; i++) {
@@ -105,8 +105,8 @@ export default {
         }
       }
     },
-    compareChars(slotIndex) {
-      this.slots[slotIndex].forEach((character, index) => {
+    async compareChars(slotIndex) {
+      await this.slots[slotIndex].forEach((character, index) => {
         if (character === this.wordOfTheDay[index]) {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#528a4c';
         } else if (this.wordOfTheDay.includes(character)) {
