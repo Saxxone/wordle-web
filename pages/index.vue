@@ -51,6 +51,7 @@ export default {
     }
   },
   mounted() {
+    this.generateWOTD();
   },
   computed: {
     wordOfTheDay() {
@@ -106,7 +107,6 @@ export default {
       }
     },
     async compareChars(slotIndex) {
-      debugger
       await this.slots[slotIndex].forEach((character, index) => {
         if (character === this.wordOfTheDay[index]) {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#528a4c';
@@ -125,6 +125,10 @@ export default {
         }, 5000)
       }
 
+    },
+    generateWOTD(){
+      let index = Math.floor(Math.random() *(this.wordBank.length - 1));
+      this.word = this.wordBank[index]
     }
   }
 }
