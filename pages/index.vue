@@ -20,10 +20,13 @@
 </template>
 
 <script>
+import data from "assets/data";
+
 export default {
   name: 'IndexPage',
   data() {
     return {
+      wordBank: data,
       chars: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
       currentIndex: 0,
       slots: [
@@ -35,11 +38,6 @@ export default {
         ['', '', '', '', '']
       ],
       word: 'today',
-      wordBank: [
-        'today',
-        'money',
-        'thanks'
-      ]
     }
   },
   mounted() {
@@ -69,18 +67,27 @@ export default {
     checkSlotValues() {
       return !this.slots[this.currentIndex].includes('');
     },
+    inWordBank(word) {
+      return this.wordBank.includes(word);
+    },
     submit() {
+      console.log(this.wordBank.length)
       if (this.checkSlotValues()) {
         const word = this.slots[this.currentIndex].join('');
-        if (word.toLowerCase() !== this.word.toLowerCase()) {
-          this.compareChars(this.currentIndex);
-        } else {
-          document.querySelectorAll('.field').forEach(elt => {
-            elt.setAttribute('readonly', true)
-          })
-          for (let i = 0; i < 5; i++) {
-            document.querySelector(`#slot${this.currentIndex}${i}`).style.background = '#528a4c'
+        if (this.inWordBank(word)) {
+          if (word.toLowerCase() !== this.word.toLowerCase()) {
+            this.compareChars(this.currentIndex);
+          } else {
+            document.querySelectorAll('.field').forEach(elt => {
+              elt.setAttribute('readonly', true)
+            })
+            for (let i = 0; i < 5; i++) {
+              document.querySelector(`#slot${this.currentIndex}${i}`).style.background = '#528a4c'
+            }
           }
+        }
+        else {
+          alert("Invalid word")
         }
       }
     },
