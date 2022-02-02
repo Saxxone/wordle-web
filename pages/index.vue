@@ -106,9 +106,9 @@ export default {
       }
     },
     async compareChars(slotIndex) {
+      debugger
       await this.slots[slotIndex].forEach((character, index) => {
-        let char = character.toString()
-        console.log(char === character)
+        this.wordOfTheDay.includes(character) ? alert(`includes character ${character}`) : alert(`does not include character ${character}`)
         if (character === this.wordOfTheDay[index]) {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#528a4c';
         }
