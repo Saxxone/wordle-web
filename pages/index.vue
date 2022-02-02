@@ -111,10 +111,10 @@ export default {
         console.log(char === character)
         if (character === this.wordOfTheDay[index]) {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#528a4c';
-        } else if (!this.wordOfTheDay.includes(character)) {
-          document.querySelector(`#slot${slotIndex}${index}`).style.background = '#272424';
-        } else if (this.wordOfTheDay.includes(character)) {
+        } else if (this.wordOfTheDay.findIndex(element => element === character) >= 1) {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#c3af4e';
+        } else {
+          document.querySelector(`#slot${slotIndex}${index}`).style.background = '#272424';
         }
       })
       if (this.currentIndex < 5) ++this.currentIndex;
