@@ -112,7 +112,7 @@ export default {
         if (character === this.wordOfTheDay[index]) {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#528a4c';
         }
-        if (this.wordOfTheDay.findIndex(element => element === character)) {
+        if (this.wordOfTheDay.includes(character)) {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#c3af4e';
         } else {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#272424';
