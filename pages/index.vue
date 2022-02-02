@@ -88,7 +88,6 @@ export default {
         const word = this.slots[this.currentIndex].join('');
         if (this.inWordBank(word)) {
           if (word.toLowerCase() !== this.word.toLowerCase()) {
-            alert(`Before compare`)
             await this.compareChars(this.currentIndex);
           } else {
             document.querySelectorAll('.field').forEach(elt => {
@@ -107,16 +106,16 @@ export default {
       }
     },
     async compareChars(slotIndex) {
+     let wotd =  [...this.wordOfTheDay]
       await this.slots[slotIndex].forEach((character, index) => {
-        if (character === this.wordOfTheDay[index]) {
+        if (character === wotd[index]) {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#528a4c';
-        } else if (this.wordOfTheDay.includes(character)) {
-          alert(`character, ${this.wordOfTheDay}`)
+        } else if (wotd.includes(character)) {
+          alert(`character, ${wotd}, ${wotd}`)
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#c3af4e';
         } else {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#272424';
         }
-        alert(`After compare`)
       })
       if (this.currentIndex < 5) ++this.currentIndex;
       else {
