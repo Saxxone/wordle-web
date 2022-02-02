@@ -71,7 +71,6 @@ export default {
       return this.wordBank.includes(word);
     },
     submit() {
-      console.log(this.wordBank.length)
       if (this.checkSlotValues()) {
         const word = this.slots[this.currentIndex].join('');
         if (this.inWordBank(word)) {
@@ -81,12 +80,14 @@ export default {
             document.querySelectorAll('.field').forEach(elt => {
               elt.setAttribute('readonly', true)
             })
+            let count = 0
             for (let i = 0; i < 5; i++) {
+              count++
               document.querySelector(`#slot${this.currentIndex}${i}`).style.background = '#528a4c'
             }
+            alert("YOU WIN")
           }
-        }
-        else {
+        } else {
           alert("Invalid word")
         }
       }
@@ -101,9 +102,12 @@ export default {
           document.querySelector(`#slot${slotIndex}${index}`).style.background = '#272424';
         }
       })
-      if (this.currentIndex < 4) ++this.currentIndex;
+      if (this.currentIndex < 5) ++this.currentIndex;
       else {
         alert("YOU LOSE!!!")
+        setTimeout(() => {
+          window.location.reload()
+        }, 2000)
       }
 
     }

@@ -34,6 +34,32 @@ export default {
   buildModules: [
   ],
 
+  pwa: {
+    icon: {
+      sizes: [64, 120, 144, 152, 192, 512],
+      fileName: 'android-chrome-512x512.png',
+    },
+    manifest: {
+      name: 'Review My Ex',
+      lang: 'en',
+      short_name: 'Wordle Web',
+      theme_color: '#528a4c',
+      description: 'Wordle Web',
+      display: 'standalone',
+      useWebmanifestExtension: false
+    },
+    meta: {
+      ogImage: 'https://wordleweb.netlify.app/wordle.png',
+      ogTitle: 'Wordle Web',
+      ogSiteName: 'Wordle Web',
+      twitterCard: 'summary_large_image',
+      twitterUrl: 'https://wordleweb.netlify.app/',
+      ogHost: 'wordleweb.netlify.app',
+      ogDescription: 'Wordle Web',
+      description: 'Wordle Web',
+    }
+  },
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/bootstrap
