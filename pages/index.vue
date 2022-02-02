@@ -18,7 +18,7 @@
     </div>
     <div class="win align-items-center justify-content-center">
       <div>
-        <img src="/correct.gif" class="img-fluid mt-n4" alt="">
+        <img src="/winner.gif" class="img-fluid mt-n4" alt="">
       </div>
     </div>
     <div class="lose align-items-center justify-content-center">
