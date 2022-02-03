@@ -62,15 +62,16 @@ export default {
   mounted() {
     this.generateWOTD();
     window.addEventListener('keydown', e => this.backSpace(e));
+    window.addEventListener('input', e => this.backSpace(e));
   },
   methods: {
     backSpace(e) {
       if(e.code === 'Backspace') {
+        alert(e.target)
        const index = this.slots[this.currentIndex].findIndex((item) => item === '')
         document.querySelector(`#slot${this.currentIndex}${index -1}`).focus();
         document.querySelector(`#slot${this.currentIndex}${index}`).value = '';
       }
-      console.log(e)
     },
     cleanChar(event, parentIndex, index) {
       const word = this.slots[this.currentIndex].join('');
