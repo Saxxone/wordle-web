@@ -73,12 +73,14 @@ export default {
             if (index < 4) {
               ++index;
               document.querySelector(`#slot${parentIndex}${index}`).focus();
+              document.querySelector(`#slot${parentIndex}${index}`).value = '';
             }
             if (this.checkSlotValues()) {
               if (this.inWordBank(word)) {
                 ++parentIndex;
                 index = 0;
                 document.querySelector(`#slot${parentIndex}${index}`).focus();
+                document.querySelector(`#slot${parentIndex}${index}`).value = '';
                 this.submit();
               } else {
                 alert('invalid word')
