@@ -50,9 +50,6 @@ export default {
       word: 'today',
     }
   },
-  mounted() {
-    this.generateWOTD();
-  },
   computed: {
     wordOfTheDay() {
       let word = this.word.toLowerCase();
@@ -62,8 +59,12 @@ export default {
       return this.chars.split('')
     }
   },
+  mounted() {
+    this.generateWOTD();
+  },
   methods: {
     cleanChar(event, parentIndex, index) {
+      const word = this.slots[this.currentIndex].join('');
       if (!this.validChars.includes(event.target.value)) {
         event.preventDefault();
       } else {
@@ -72,6 +73,13 @@ export default {
             if (index < 4) {
               ++index;
               document.querySelector(`#slot${parentIndex}${index}`).focus();
+            }
+            if (this.checkSlotValues()) {
+              if (this.inWordBank(word)) {
+                this.submit();
+              } else {
+                alert('invalid word')
+              }
             }
           }
         }
@@ -85,25 +93,17 @@ export default {
       return this.wordBank.includes(wrd);
     },
     async submit() {
-      if (this.checkSlotValues()) {
-        const word = this.slots[this.currentIndex].join('');
-        if (this.inWordBank(word)) {
-          if (word.toLowerCase() !== this.word.toLowerCase()) {
-            await this.compareChars(this.currentIndex);
-          } else {
-            document.querySelectorAll('.field').forEach(elt => {
-              elt.setAttribute('readonly', 'true')
-            })
-            let count = 0
-            for (let i = 0; i < 5; i++) {
-              count++
-              document.querySelector(`#slot${this.currentIndex}${i}`).style.background = '#528a4c'
-            }
-            document.querySelector('.win').style.display = 'flex'
-          }
-        } else {
-          alert("Invalid word")
+      const word = this.slots[this.currentIndex].join('');
+      if (word.toLowerCase() !== this.word.toLowerCase()) {
+        await this.compareChars(this.currentIndex);
+      } else {
+        document.querySelectorAll('.field').forEach(elt => {
+          elt.setAttribute('readonly', 'true')
+        })
+        for (let i = 0; i < 5; i++) {
+          document.querySelector(`#slot${this.currentIndex}${i}`).style.background = '#528a4c'
         }
+        document.querySelector('.win').style.display = 'flex'
       }
     },
     async compareChars(slotIndex) {
@@ -126,8 +126,8 @@ export default {
       }
 
     },
-    generateWOTD(){
-      let index = Math.floor(Math.random() *(this.wordBank.length - 1));
+    generateWOTD() {
+      let index = Math.floor(Math.random() * (this.wordBank.length - 1));
       this.word = this.wordBank[index]
     }
   }
