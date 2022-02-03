@@ -76,6 +76,9 @@ export default {
             }
             if (this.checkSlotValues()) {
               if (this.inWordBank(word)) {
+                ++parentIndex;
+                index = 0;
+                document.querySelector(`#slot${parentIndex}${index}`).focus();
                 this.submit();
               } else {
                 alert('invalid word')
